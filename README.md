@@ -25,14 +25,8 @@ This project is about creating an online rating system to the blockchain to get 
     
 ## Workflow
 Steps to do the project:
-* Section one
-    • building and deploy the smart contract with beaker and pyteal libraries
-    • Test the smart contract with pytest.
-Section two
-    • building the mobile dapp user interface with react native.
-Section three
-    • Connecting the deployed smart contract with the mobile dapp
-    • Testing all the connections
-    • Deploying the whole application 
-
-
+* Step 1. 
+   * building and deploy the smart contract with and pyteal libraries
+   * Testing the smart contact with pytest
+* Step 2
+   * building the mobile dapp user interface with react native.
