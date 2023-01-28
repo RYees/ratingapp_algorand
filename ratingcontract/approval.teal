@@ -1,0 +1,133 @@
+#pragma version 8
+intcblock 0 1 4
+bytecblock 0x70726f647563742d726174696e673a757631 0x4e414d45 0x494d414745 0x4445534352495054494f4e 0x5052494345 0x52415445
+txn NumAppArgs
+intc_0 // 0
+==
+bnz main_l6
+txna ApplicationArgs 0
+pushbytes 0xd7301d4e // "app_creation()void"
+==
+bnz main_l5
+txna ApplicationArgs 0
+pushbytes 0x744303be // "app_start()void"
+==
+bnz main_l4
+err
+main_l4:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub appstart_2
+intc_1 // 1
+return
+main_l5:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub appcreation_1
+intc_1 // 1
+return
+main_l6:
+txn OnCompletion
+intc_0 // NoOp
+==
+bnz main_l8
+err
+main_l8:
+txn ApplicationID
+intc_0 // 0
+==
+assert
+callsub create_0
+intc_1 // 1
+return
+
+// create
+create_0:
+intc_1 // 1
+return
+
+// app_creation
+appcreation_1:
+txn NumAppArgs
+intc_2 // 4
+==
+assert
+txn Note
+bytec_0 // "product-rating:uv1"
+==
+assert
+txna ApplicationArgs 3
+btoi
+intc_0 // 0
+>
+assert
+bytec_1 // "NAME"
+txna ApplicationArgs 0
+app_global_put
+bytec_2 // "IMAGE"
+txna ApplicationArgs 1
+app_global_put
+bytec_3 // "DESCRIPTION"
+txna ApplicationArgs 2
+app_global_put
+bytec 4 // "PRICE"
+txna ApplicationArgs 3
+btoi
+app_global_put
+bytec 5 // "RATE"
+intc_0 // 0
+app_global_put
+intc_1 // 1
+return
+
+// app_start
+appstart_2:
+txn ApplicationID
+intc_0 // 0
+==
+bnz appstart_2_l2
+err
+appstart_2_l2:
+txn NumAppArgs
+intc_2 // 4
+==
+assert
+txn Note
+bytec_0 // "product-rating:uv1"
+==
+assert
+txna ApplicationArgs 3
+btoi
+intc_0 // 0
+>
+assert
+bytec_1 // "NAME"
+txna ApplicationArgs 0
+app_global_put
+bytec_2 // "IMAGE"
+txna ApplicationArgs 1
+app_global_put
+bytec_3 // "DESCRIPTION"
+txna ApplicationArgs 2
+app_global_put
+bytec 4 // "PRICE"
+txna ApplicationArgs 3
+btoi
+app_global_put
+bytec 5 // "RATE"
+intc_0 // 0
+app_global_put
+intc_1 // 1
+return
