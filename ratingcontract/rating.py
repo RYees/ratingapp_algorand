@@ -30,8 +30,11 @@ class Rating(Application):
         price = Bytes("PRICE")
         rating = Bytes("RATE")
 
-    # class AppMethods:
-    #     buy = Bytes("buy")
+    class AppMethods:
+        rate = Bytes("rate")
+        tip = Bytes("tip")
+
+    @external
     def app_creation(self):
         return Seq([
             Assert(Txn.application_args.length() == Int(4)),
@@ -45,6 +48,7 @@ class Rating(Application):
             Approve()
         ])
     
+    @external
     def tip(self, amount: abi.Uint64):
         count = Txn.application_args[1]
         valid_number_of_transactions = Global.group_size() == Int(2)
@@ -63,6 +67,7 @@ class Rating(Application):
 
         return If(can_tip).Then(state_value).Else(Reject())
     
+    # @external
     # def rate(self):
     #     count = Txn.application_args[1]
     #     valid_number_of_transactions = Global.group_size() == Int(2)
@@ -84,13 +89,16 @@ class Rating(Application):
 
     #     return If(can_buy).Then(update_state).Else(Reject())
 
+    @external
     def application_deletion(self):
         return Return(Txn.sender() == Global.creator_address())
-
-    def application_start(self):
+    
+    @external
+    def app_start(self):
         return Cond(
             [Txn.application_id() == Int(0), self.application_creation()],
             [Txn.on_completion() == OnComplete.DeleteApplication, self.application_deletion()],
-            [Txn.application_args[0] == self.AppMethods.buy, self.buy()]
+            [Txn.application_args[0] == self.AppMethods.rate, self.rate()]
+            [Txn.application_args[1] == self.AppMethods.tip, self.tip()]
         )
 
