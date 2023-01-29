@@ -49,14 +49,14 @@ class Rating(Application):
         ])
     
     # @external
-    # def tip(self, amount):
+    # def tip(self):
     #     count = Txn.application_args[1]
     #     valid_number_of_transactions = Global.group_size() == Int(2)
 
     #     valid_payment_to_seller = And(
     #         Gtxn[1].type_enum() == TxnType.Payment,
     #         Gtxn[1].receiver() == Global.creator_address(),
-    #         Gtxn[1].amount() == self.amount,
+    #         Gtxn[1].amount() == App.globalGet(self.Variables.price),
     #         Gtxn[1].sender() == Gtxn[0].sender(),
     #     )
 
@@ -65,7 +65,23 @@ class Rating(Application):
 
     #     state_value = 'Successfully tipped'
 
-    #     return If(can_tip).Then(state_value).Else(Reject())
+    #     return can_tip
+    
+    # @external
+    def tip(self, amount: Expr):
+        return Seq(
+            InnerTxnBuilder.Begin(),
+            InnerTxnBuilder.SetFields(
+                {
+                    TxnField.type_enum: TxnType.Payment,
+                    TxnField.receiver: Global.creator_address(),
+                    TxnField.amount: amount,
+                    TxnField.sender(): Global.sender(),
+                }
+            ),
+            InnerTxnBuilder.Submit(),
+        )
+
     
     @external
     def rate(self):
@@ -99,7 +115,7 @@ class Rating(Application):
     def read_price(self, *, output: abi.Uint64):
         """Only callable by Creator."""
         return output.set(Btoi(self.Variables.rating))
-        
+
 
 if __name__ == "__main__":
     path = os.path.dirname(os.path.abspath(__file__))

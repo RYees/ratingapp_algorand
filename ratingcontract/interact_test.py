@@ -22,16 +22,16 @@ app = Rating()
 
 # Create an Application client for event creator containing both an algod client and my app
 app_client = ApplicationClient(client, app, signer=creator_acct.signer)
-console.log("account lists =>" + accts)
-# def rate_testing():
 
-#     print("### CREATE AND INITIALIZE CONTRACT ### \n")
-#     print(f"account-one: {creator_acct} and acct-two: {guest_acct1} and acct-three: {guest_acct2}")
+def rate_testing():
+
+    print("### CREATE AND INITIALIZE CONTRACT ### \n")
+    print(f"account-one: {creator_acct} and acct-two: {guest_acct1} and acct-three: {guest_acct2}")
     
-#     sp = client.suggested_params()
-#     # Create the applicatiion on chain, set the app id for the app client
-#     app_id, app_addr, txid = app_client.create(event_price=1 * consts.algo)
-#     print(f"Created App with id: {app_id} and address addr: {app_addr} in tx: {txid}")
+    sp = client.suggested_params()
+    # Create the applicatiion on chain, set the app id for the app client
+    app_id, app_addr, txid = app_client.create()
+    print(f"Created App with id: {app_id} and address addr: {app_addr} in tx: {txid}")
 
 #     event_price = app_client.call(app.read_price)
 #     print(f"Event price is set to {event_price.return_value} microAlgos")
@@ -125,5 +125,5 @@ console.log("account lists =>" + accts)
 #     app_client.delete()
 #     print(f"RSVP successfully deleted")
 
-# if __name__ == "__main__":
-#     rate_testing()
+if __name__ == "__main__":
+    rate_testing()
