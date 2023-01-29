@@ -33,44 +33,44 @@ def rate_testing():
     app_id, app_addr, txid = app_client.create()
     print(f"Created App with id: {app_id} and address addr: {app_addr} in tx: {txid}")
 
-#     event_price = app_client.call(app.read_price)
-#     print(f"Event price is set to {event_price.return_value} microAlgos")
+    rating = app_client.call(app.read_price)
+    print(f"rating is set to {rating.return_value}")
 
-#     # Fund the contract for minimum balance
-#     app_client.fund(100*consts.milli_algo)
-#     print(f"RSVP Balance: {client.account_info(app_addr).get('amount')} microAlgos \n")
+    # Fund the contract for minimum balance
+    app_client.fund(100*consts.milli_algo)
+    print(f"Contract Balance: {client.account_info(app_addr).get('amount')} microAlgos \n")
 
-#     # Guest 1
-#     print("### GUEST 1 SCENARIO ###\n")
+    # Test 1
+    print("### TEST 1 SCENARIO ###\n")
     
-#     # Set up Guest 1 application client
-#     app_client_guest1 = app_client.prepare(signer=guest_acct1.signer)
+    # Set up Test 1 application client
+    app_client_guest1 = app_client.prepare(signer=guest_acct1.signer)
 
-#     # RSVP to the event by opting in
-#     print("Guest 1 rsvp to the event...")
-#     ptxn2 = TransactionWithSigner(
-#             txn=transaction.PaymentTxn(guest_acct1.address, sp, app_addr,1 * consts.algo),
-#             signer=guest_acct1.signer,
-#         )
+    # Contract to the rating by opting in
+    print("user 1 tip to the product provider...")
+    ptxn2 = TransactionWithSigner(
+            txn=transaction.PaymentTxn(guest_acct1.address, sp, app_addr,1 * consts.algo),
+            signer=guest_acct1.signer,
+        )
     
-#     # Opt in to contract with event registration payment included
-#     app_client_guest1.opt_in(payment=ptxn2)
-#     acct_state = app_client_guest1.get_account_state()
-#     print(f"acct_state: {acct_state}")
-#     checked_in_val = acct_state["checked_in"]
-#     print(f"Only RSVPed so checked_in should be 0 and the state is {checked_in_val}")
-#     print(f"RSVP Balance: {client.account_info(app_addr).get('amount')} microAlgos \n")
+    # Opt in to contract with event registration payment included
+    # app_client_guest1.opt_in(payment=ptxn2)
+    # acct_state = app_client_guest1.get_account_state()
+    # print(f"acct_state: {acct_state}")
+    # checked_in_val = acct_state["checked_in"]
+    # print(f"Only RSVPed so checked_in should be 0 and the state is {checked_in_val}")
+    print(f"contract Balance: {client.account_info(app_addr).get('amount')} microAlgos \n")
     
-#     # Check in to the event
-#     print("Guest 1 checking in to the Event...")
-#     app_client_guest1.call(app.check_in)
-#     acct_state = app_client_guest1.get_account_state()
-#     checked_in_val = acct_state["checked_in"]
-#     print(f"checked_in should be 1 and the state is {checked_in_val}")
+    # Check in to the event
+    print("Guest 1 checking in to the Event...")
+    app_client_guest1.call(app.tip)
+    acct_state = app_client_guest1.get_account_state()
+    checked_in_val = acct_state["checked_in"]
+    print(f"checked_in should be 1 and the state is {checked_in_val}")
     
-#     # See How many RSVPed
-#     result = app_client.call(app.read_rsvp)
-#     print(f"The number of people RSVPed should be 1 and it is {result.return_value}\n")
+    # See How many RSVPed
+    # result = app_client.call(app.read_rsvp)
+    # print(f"The number of people RSVPed should be 1 and it is {result.return_value}\n")
 
 #     # Guest 2 Scenario
 

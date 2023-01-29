@@ -67,7 +67,7 @@ class Rating(Application):
 
     #     return can_tip
     
-    # @external
+    @external
     def tip(self, amount: Expr):
         return Seq(
             InnerTxnBuilder.Begin(),
