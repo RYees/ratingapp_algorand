@@ -1,0 +1,56 @@
+{
+  "hints": {
+    "read_price": {
+      "read_only": true
+    }
+  },
+  "source": {
+    "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMSA0CmJ5dGVjYmxvY2sgMHg1MjQxNTQ0NSAweDcwNzI2ZjY0NzU2Mzc0MmQ3MjYxNzQ2OTZlNjczYTc1NzYzMSAweDRlNDE0ZDQ1IDB4NDk0ZDQxNDc0NSAweDQ0NDU1MzQzNTI0OTUwNTQ0OTRmNGUgMHg1MDUyNDk0MzQ1CnR4biBOdW1BcHBBcmdzCmludGNfMCAvLyAwCj09CmJueiBtYWluX2wxMAp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCnB1c2hieXRlcyAweGQ3MzAxZDRlIC8vICJhcHBfY3JlYXRpb24oKXZvaWQiCj09CmJueiBtYWluX2w5CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4YjFiMGIzYzAgLy8gInJhdGUoKXZvaWQiCj09CmJueiBtYWluX2w4CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4NzQ0MzAzYmUgLy8gImFwcF9zdGFydCgpdm9pZCIKPT0KYm56IG1haW5fbDcKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMApwdXNoYnl0ZXMgMHg4YTIzZWUyMSAvLyAicmVhZF9wcmljZSgpdWludDY0Igo9PQpibnogbWFpbl9sNgplcnIKbWFpbl9sNjoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAohPQomJgphc3NlcnQKY2FsbHN1YiByZWFkcHJpY2VfNApzdG9yZSAwCnB1c2hieXRlcyAweDE1MWY3Yzc1IC8vIDB4MTUxZjdjNzUKbG9hZCAwCml0b2IKY29uY2F0CmxvZwppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sNzoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAohPQomJgphc3NlcnQKY2FsbHN1YiBhcHBzdGFydF8zCmludGNfMSAvLyAxCnJldHVybgptYWluX2w4Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CiYmCmFzc2VydApjYWxsc3ViIHJhdGVfMgppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sOToKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAohPQomJgphc3NlcnQKY2FsbHN1YiBhcHBjcmVhdGlvbl8xCmludGNfMSAvLyAxCnJldHVybgptYWluX2wxMDoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQpibnogbWFpbl9sMTIKZXJyCm1haW5fbDEyOgp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAo9PQphc3NlcnQKY2FsbHN1YiBjcmVhdGVfMAppbnRjXzEgLy8gMQpyZXR1cm4KCi8vIGNyZWF0ZQpjcmVhdGVfMDoKaW50Y18xIC8vIDEKcmV0dXJuCgovLyBhcHBfY3JlYXRpb24KYXBwY3JlYXRpb25fMToKdHhuIE51bUFwcEFyZ3MKaW50Y18yIC8vIDQKPT0KYXNzZXJ0CnR4biBOb3RlCmJ5dGVjXzEgLy8gInByb2R1Y3QtcmF0aW5nOnV2MSIKPT0KYXNzZXJ0CnR4bmEgQXBwbGljYXRpb25BcmdzIDMKYnRvaQppbnRjXzAgLy8gMAo+CmFzc2VydApieXRlY18yIC8vICJOQU1FIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCmFwcF9nbG9iYWxfcHV0CmJ5dGVjXzMgLy8gIklNQUdFIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAxCmFwcF9nbG9iYWxfcHV0CmJ5dGVjIDQgLy8gIkRFU0NSSVBUSU9OIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAyCmFwcF9nbG9iYWxfcHV0CmJ5dGVjIDUgLy8gIlBSSUNFIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAzCmJ0b2kKYXBwX2dsb2JhbF9wdXQKYnl0ZWNfMCAvLyAiUkFURSIKaW50Y18wIC8vIDAKYXBwX2dsb2JhbF9wdXQKaW50Y18xIC8vIDEKcmV0dXJuCgovLyByYXRlCnJhdGVfMjoKYnl0ZWNfMCAvLyAiUkFURSIKYnl0ZWNfMCAvLyAiUkFURSIKYXBwX2dsb2JhbF9nZXQKaW50Y18xIC8vIDEKKwphcHBfZ2xvYmFsX3B1dAppbnRjXzEgLy8gMQpyZXR1cm4KCi8vIGFwcF9zdGFydAphcHBzdGFydF8zOgp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAo9PQpibnogYXBwc3RhcnRfM19sNAp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCnB1c2hieXRlcyAweDcyNjE3NDY1IC8vICJyYXRlIgo9PQpibnogYXBwc3RhcnRfM19sMwplcnIKYXBwc3RhcnRfM19sMzoKYnl0ZWNfMCAvLyAiUkFURSIKYnl0ZWNfMCAvLyAiUkFURSIKYXBwX2dsb2JhbF9nZXQKaW50Y18xIC8vIDEKKwphcHBfZ2xvYmFsX3B1dAppbnRjXzEgLy8gMQpyZXR1cm4KYXBwc3RhcnRfM19sNDoKdHhuIE51bUFwcEFyZ3MKaW50Y18yIC8vIDQKPT0KYXNzZXJ0CnR4biBOb3RlCmJ5dGVjXzEgLy8gInByb2R1Y3QtcmF0aW5nOnV2MSIKPT0KYXNzZXJ0CnR4bmEgQXBwbGljYXRpb25BcmdzIDMKYnRvaQppbnRjXzAgLy8gMAo+CmFzc2VydApieXRlY18yIC8vICJOQU1FIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCmFwcF9nbG9iYWxfcHV0CmJ5dGVjXzMgLy8gIklNQUdFIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAxCmFwcF9nbG9iYWxfcHV0CmJ5dGVjIDQgLy8gIkRFU0NSSVBUSU9OIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAyCmFwcF9nbG9iYWxfcHV0CmJ5dGVjIDUgLy8gIlBSSUNFIgp0eG5hIEFwcGxpY2F0aW9uQXJncyAzCmJ0b2kKYXBwX2dsb2JhbF9wdXQKYnl0ZWNfMCAvLyAiUkFURSIKaW50Y18wIC8vIDAKYXBwX2dsb2JhbF9wdXQKaW50Y18xIC8vIDEKcmV0dXJuCgovLyByZWFkX3ByaWNlCnJlYWRwcmljZV80OgpieXRlY18wIC8vICJSQVRFIgpidG9pCnJldHN1Yg==",
+    "clear": "I3ByYWdtYSB2ZXJzaW9uIDgKcHVzaGludCAwIC8vIDAKcmV0dXJu"
+  },
+  "schema": {
+    "local": {
+      "declared": {},
+      "reserved": {}
+    },
+    "global": {
+      "declared": {},
+      "reserved": {}
+    }
+  },
+  "contract": {
+    "name": "Rating",
+    "methods": [
+      {
+        "name": "app_creation",
+        "args": [],
+        "returns": {
+          "type": "void"
+        }
+      },
+      {
+        "name": "rate",
+        "args": [],
+        "returns": {
+          "type": "void"
+        }
+      },
+      {
+        "name": "app_start",
+        "args": [],
+        "returns": {
+          "type": "void"
+        }
+      },
+      {
+        "name": "read_price",
+        "args": [],
+        "returns": {
+          "type": "uint64"
+        },
+        "desc": "Read amount of RSVP to the event. Only callable by Creator."
+      }
+    ],
+    "networks": {}
+  }
+}

@@ -1,7 +1,7 @@
 from pyteal import *
 from beaker import *
-# import os
-# import json
+import os
+import json
 from typing import Final
 
 class Rating(Application):
@@ -30,8 +30,8 @@ class Rating(Application):
         price = Bytes("PRICE")
         rating = Bytes("RATE")
 
-    # class AppMethods:
-    #     rate = Bytes("rate")
+    class AppMethods:
+        rate = Bytes("rate")
         # tip = Bytes("tip")
 
     @external
@@ -49,14 +49,14 @@ class Rating(Application):
         ])
     
     # @external
-    # def tip(self, amount: abi.Uint64):
+    # def tip(self, amount):
     #     count = Txn.application_args[1]
     #     valid_number_of_transactions = Global.group_size() == Int(2)
 
     #     valid_payment_to_seller = And(
     #         Gtxn[1].type_enum() == TxnType.Payment,
     #         Gtxn[1].receiver() == Global.creator_address(),
-    #         Gtxn[1].amount() == amount.get(),
+    #         Gtxn[1].amount() == self.amount,
     #         Gtxn[1].sender() == Gtxn[0].sender(),
     #     )
 
@@ -67,67 +67,48 @@ class Rating(Application):
 
     #     return If(can_tip).Then(state_value).Else(Reject())
     
-    # @external
-    # def rate(self):
-    #     count = Txn.application_args[1]
-    #     valid_number_of_transactions = Global.group_size() == Int(2)
+    @external
+    def rate(self):
+        count = Txn.application_args[1]
+        update_state = Seq([
+            App.globalPut(self.Variables.rating, App.globalGet(self.Variables.rating) + Int(1)),
+            Approve()
+        ])
 
-    #     valid_payment_to_seller = And(
-    #         Gtxn[1].type_enum() == TxnType.Payment,
-    #         Gtxn[1].receiver() == Global.creator_address(),
-    #         Gtxn[1].amount() == App.globalGet(self.Variables.price) * Btoi(count),
-    #         Gtxn[1].sender() == Gtxn[0].sender(),
-    #     )
+        return update_state
 
-    #     can_buy = And(valid_number_of_transactions,
-    #                   valid_payment_to_seller)
-
-    #     update_state = Seq([
-    #         App.globalPut(self.Variables.rating, App.globalGet(self.Variables.rating.increment())),
-    #         Approve()
-    #     ])
-
-    #     return If(can_buy).Then(update_state).Else(Reject())
-
-    # @external
-    # def application_deletion(self):
-    #     return Return(Txn.sender() == Global.creator_address())
+  
+    # @delete(authorize=Authorize.only(Global.creator_address()))
+    # def app_deletion(self):
+    #     return Return(Txn.sender() == Global.creator_address())    
     
     @external
     def app_start(self):
         return Cond(
             [Txn.application_id() == Int(0), self.app_creation()],
-            # [Txn.on_completion() == OnComplete.DeleteApplication, self.application_deletion()],
-            # [Txn.application_args[0] == self.AppMethods.rate, self.rate()],
-            # [Txn.application_args[1] == self.AppMethods.tip, self.tip()]
+            [Txn.application_args[0] == self.AppMethods.rate, self.rate()],
+            # [Txn.application_args[1] == self.AppMethods.tip, self.tip()],
+            # [Txn.on_completion() == OnComplete.DeleteApplication, self.app_deletion()],
         )
 
- ################
-    # Read Methods #
-    ################
-    
-    # @external(read_only=True, authorize=Authorize.only(Global.creator_address()))
-    # def read_rsvp(self, *, output: abi.Byte):
-    #     """Read amount of RSVP to the event. Only callable by Creator."""
-    #     return output.set(self.Variables.rating)
-    
-    # @external(read_only=True)
-    # def read_price(self, *, output: abi.Byte):
-    #     """Read amount of RSVP to the event. Only callable by Creator."""
-    #     return output.set(self.Variables)
 
+    # Read Methods #
+    ################    
+  
+    @external(read_only=True)
+    def read_price(self, *, output: abi.Uint64):
+        """Only callable by Creator."""
+        return output.set(Btoi(self.Variables.rating))
+        
 
 if __name__ == "__main__":
-    import os
-    import json
-
     path = os.path.dirname(os.path.abspath(__file__))
 
     rating = Rating()
 
     # Dump out the contract as json that can be read in by any of the SDKs
-    # with open(os.path.join(path, "contract.json"), "w") as f:
-    #     f.write(json.dumps(rating.application_spec(), indent=2))
+    with open(os.path.join(path, "contract.json"), "w") as f:
+        f.write(json.dumps(rating.application_spec(), indent=2))
 
     # Write out the approval and clear programs
     with open(os.path.join(path, "approval.teal"), "w") as f:

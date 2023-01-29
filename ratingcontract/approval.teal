@@ -1,20 +1,28 @@
 #pragma version 8
 intcblock 0 1 4
-bytecblock 0x70726f647563742d726174696e673a757631 0x4e414d45 0x494d414745 0x4445534352495054494f4e 0x5052494345 0x52415445
+bytecblock 0x52415445 0x70726f647563742d726174696e673a757631 0x4e414d45 0x494d414745 0x4445534352495054494f4e 0x5052494345
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l6
+bnz main_l10
 txna ApplicationArgs 0
 pushbytes 0xd7301d4e // "app_creation()void"
 ==
-bnz main_l5
+bnz main_l9
+txna ApplicationArgs 0
+pushbytes 0xb1b0b3c0 // "rate()void"
+==
+bnz main_l8
 txna ApplicationArgs 0
 pushbytes 0x744303be // "app_start()void"
 ==
-bnz main_l4
+bnz main_l7
+txna ApplicationArgs 0
+pushbytes 0x8a23ee21 // "read_price()uint64"
+==
+bnz main_l6
 err
-main_l4:
+main_l6:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -23,10 +31,40 @@ intc_0 // 0
 !=
 &&
 assert
-callsub appstart_2
+callsub readprice_4
+store 0
+pushbytes 0x151f7c75 // 0x151f7c75
+load 0
+itob
+concat
+log
 intc_1 // 1
 return
-main_l5:
+main_l7:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub appstart_3
+intc_1 // 1
+return
+main_l8:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub rate_2
+intc_1 // 1
+return
+main_l9:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -38,13 +76,13 @@ assert
 callsub appcreation_1
 intc_1 // 1
 return
-main_l6:
+main_l10:
 txn OnCompletion
 intc_0 // NoOp
 ==
-bnz main_l8
+bnz main_l12
 err
-main_l8:
+main_l12:
 txn ApplicationID
 intc_0 // 0
 ==
@@ -65,7 +103,7 @@ intc_2 // 4
 ==
 assert
 txn Note
-bytec_0 // "product-rating:uv1"
+bytec_1 // "product-rating:uv1"
 ==
 assert
 txna ApplicationArgs 3
@@ -73,39 +111,63 @@ btoi
 intc_0 // 0
 >
 assert
-bytec_1 // "NAME"
+bytec_2 // "NAME"
 txna ApplicationArgs 0
 app_global_put
-bytec_2 // "IMAGE"
+bytec_3 // "IMAGE"
 txna ApplicationArgs 1
 app_global_put
-bytec_3 // "DESCRIPTION"
+bytec 4 // "DESCRIPTION"
 txna ApplicationArgs 2
 app_global_put
-bytec 4 // "PRICE"
+bytec 5 // "PRICE"
 txna ApplicationArgs 3
 btoi
 app_global_put
-bytec 5 // "RATE"
+bytec_0 // "RATE"
 intc_0 // 0
 app_global_put
 intc_1 // 1
 return
 
+// rate
+rate_2:
+bytec_0 // "RATE"
+bytec_0 // "RATE"
+app_global_get
+intc_1 // 1
++
+app_global_put
+intc_1 // 1
+return
+
 // app_start
-appstart_2:
+appstart_3:
 txn ApplicationID
 intc_0 // 0
 ==
-bnz appstart_2_l2
+bnz appstart_3_l4
+txna ApplicationArgs 0
+pushbytes 0x72617465 // "rate"
+==
+bnz appstart_3_l3
 err
-appstart_2_l2:
+appstart_3_l3:
+bytec_0 // "RATE"
+bytec_0 // "RATE"
+app_global_get
+intc_1 // 1
++
+app_global_put
+intc_1 // 1
+return
+appstart_3_l4:
 txn NumAppArgs
 intc_2 // 4
 ==
 assert
 txn Note
-bytec_0 // "product-rating:uv1"
+bytec_1 // "product-rating:uv1"
 ==
 assert
 txna ApplicationArgs 3
@@ -113,21 +175,27 @@ btoi
 intc_0 // 0
 >
 assert
-bytec_1 // "NAME"
+bytec_2 // "NAME"
 txna ApplicationArgs 0
 app_global_put
-bytec_2 // "IMAGE"
+bytec_3 // "IMAGE"
 txna ApplicationArgs 1
 app_global_put
-bytec_3 // "DESCRIPTION"
+bytec 4 // "DESCRIPTION"
 txna ApplicationArgs 2
 app_global_put
-bytec 4 // "PRICE"
+bytec 5 // "PRICE"
 txna ApplicationArgs 3
 btoi
 app_global_put
-bytec 5 // "RATE"
+bytec_0 // "RATE"
 intc_0 // 0
 app_global_put
 intc_1 // 1
 return
+
+// read_price
+readprice_4:
+bytec_0 // "RATE"
+btoi
+retsub
