@@ -28,7 +28,7 @@ class Rating(Application):
         image = Bytes("IMAGE")
         description = Bytes("DESCRIPTION")
         price = Bytes("PRICE")
-        rating = Bytes("RATE")
+        rating = Bytes("RATING")
 
     class AppMethods:
         rate = Bytes("rate")
