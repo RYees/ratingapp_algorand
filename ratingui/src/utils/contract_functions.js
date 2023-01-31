@@ -36,9 +36,9 @@ const compileProgram = async (programSource) => {
     return new Uint8Array(Buffer.from(compileResponse.result, "base64"));
 }
 
-// CREATE Rating: ApplicationCreateTxn
-export const createRatingAction = async (senderAddress, Rating) => {
-    console.log("Adding Rating...")
+// CREATE PRODUCT: ApplicationCreateTxn
+export const createProductAction = async (senderAddress, product) => {
+    console.log("Adding product...")
 
     let params = await algodClient.getTransactionParams().do();
     params.fee = algosdk.ALGORAND_MIN_TX_FEE;
@@ -50,10 +50,10 @@ export const createRatingAction = async (senderAddress, Rating) => {
 
     // Build note to identify transaction later and required app args as Uint8Arrays
     let note = new TextEncoder().encode(ratingNote);
-    let name = new TextEncoder().encode(Rating.name);
-    let image = new TextEncoder().encode(Rating.image);
-    let description = new TextEncoder().encode(Rating.description);
-    let price = algosdk.encodeUint64(Rating.price);
+    let name = new TextEncoder().encode(product.name);
+    let image = new TextEncoder().encode(product.image);
+    let description = new TextEncoder().encode(product.description);
+    let price = algosdk.encodeUint64(product.price);
 
     let appArgs = [name, image, description, price]
 
@@ -117,7 +117,7 @@ export const getProductsAction = async () => {
             }
         }
     }
-    console.log("Products fetched.")
+    console.log("Products fetched.", products)
     return products
 }
 

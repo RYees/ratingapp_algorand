@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import './App.css';
 import MyAlgoConnect from "@randlabs/myalgo-connect";
-import {getProductsAction} from "./utils/contract_functions";
+import {getProductsAction, createProductAction} from "./utils/contract_functions";
+import AddProduct from "./AddProduct";
+
 
 const App = function AppWrapper() {
 
@@ -23,16 +25,36 @@ const App = function AppWrapper() {
     useEffect(() => {
         getProductsAction().then(products => {
             setProducts(products)
+            console.log('suprised', products);
         });
     }, []);
+
+    const createProduct = async (data) => {
+	    // setLoading(true);
+	    createProductAction(address, data)
+	        .then(() => {
+	            // toast(<NotificationSuccess text="Product added successfully."/>);
+	            // getProducts();
+	            // fetchBalance(address);
+              console.log('Successfully added')
+	        })
+	        .catch(error => {
+	            console.log(error);
+	            // toast(<NotificationError text="Failed to create a product."/>);
+	            // setLoading(false);
+	        })
+	    };
 
     return (
         <>
             {address ? (
-                products.forEach((product) => console.log(product))
-            ) : (
+                products.forEach((product) => product)
+             ) : ( 
                 <button onClick={connectWallet}>CONNECT WALLET</button>
-            )} 
+    
+           )} 
+           <p>{address}</p>
+           <AddProduct createProduct={createProduct}/>
         </>
     );
 }

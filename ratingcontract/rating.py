@@ -67,7 +67,7 @@ class Rating(Application):
 
     #     return can_tip
     
-    @external
+    # @external
     def tip(self, amount: Expr):
         return Seq(
             InnerTxnBuilder.Begin(),
@@ -127,8 +127,8 @@ if __name__ == "__main__":
         f.write(json.dumps(rating.application_spec(), indent=2))
 
     # Write out the approval and clear programs
-    with open(os.path.join(path, "approval.teal"), "w") as f:
+    with open(os.path.join(path, "rating_approval.teal"), "w") as f:
         f.write(rating.approval_program)
 
-    with open(os.path.join(path, "clear.teal"), "w") as f:
+    with open(os.path.join(path, "rating_clear.teal"), "w") as f:
         f.write(rating.clear_program)
