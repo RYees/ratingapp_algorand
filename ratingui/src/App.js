@@ -4,6 +4,7 @@ import MyAlgoConnect from "@randlabs/myalgo-connect";
 import {getProductsAction, createProductAction} from "./utils/contract_functions";
 import AddProduct from "./AddProduct";
 import CreateProd from "./CreateProd";
+import im from './images/img6.jpg'
 
 const App = function AppWrapper() {
 
@@ -47,15 +48,18 @@ const App = function AppWrapper() {
 
     return (
         <>
-        <div className="container">
-            {/* {address ? (
-                products.forEach((product) => product)
-             ) : ( 
-                <button className="button" onClick={connectWallet}>CONNECT WALLET</button>
-    
-           )} 
-           <p>{address}</p> */}
-           {/* <CreateProd senderAddress={address} /> */}
+        <div className="contain-boxing">
+            {/* <img className="imw" src={im}/> */}
+            <div className="sub-box">
+                {address ? (
+                    products.forEach((product) => product)
+                ) : ( 
+                    <button className="button-on" onClick={connectWallet}>Connect Wallet</button>
+        
+                )} 
+                <p>{address}</p>
+                <CreateProd senderAddress={address} />
+           </div>
         </div>
         </>
     );

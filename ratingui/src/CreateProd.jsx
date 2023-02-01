@@ -138,7 +138,7 @@ const CreateProd = ({senderAddress}) => {
      <div>
         <BodyText className="title">Create Product</BodyText>
      </div>
-        <div>
+        <div className="form">
             <FormStyle onChange = {(e) => prodName.current = e.target.value} placeholder="Product name" /><br/>
             <FormStyle onChange = {(e) => descrip.current = e.target.value} placeholder="Image" /><br/>
             <FormStyle onChange = {(e) => imag.current = e.target.value} placeholder="Description" /><br/>
