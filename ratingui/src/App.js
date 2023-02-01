@@ -49,15 +49,16 @@ const App = function AppWrapper() {
     return (
         <>
         <div className="contain-boxing">
-            {/* <img className="imw" src={im}/> */}
+            {/* <img className="imw" src={im}/> */}<p>{address}</p>
             <div className="sub-box">
-                {address ? (
+                {/* {address ? (
                     products.forEach((product) => product)
                 ) : ( 
                     <button className="button-on" onClick={connectWallet}>Connect Wallet</button>
         
-                )} 
-                <p>{address}</p>
+                )}  */}
+                <div> <button className="button-on" onClick={connectWallet}>Connect Wallet</button></div>
+                                
                 <CreateProd senderAddress={address} />
            </div>
         </div>

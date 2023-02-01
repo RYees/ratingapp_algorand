@@ -22,3 +22,8 @@
   background-color: rgb(255, 174, 0);
   font-size: 1.2rem;
 }
+
+.sub-box {
+  display: flex;
+  justify-content: space-between;
+}
