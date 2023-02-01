@@ -47,14 +47,16 @@ const App = function AppWrapper() {
 
     return (
         <>
-            {address ? (
+        <div className="container">
+            {/* {address ? (
                 products.forEach((product) => product)
              ) : ( 
-                <button onClick={connectWallet}>CONNECT WALLET</button>
+                <button className="button" onClick={connectWallet}>CONNECT WALLET</button>
     
            )} 
-           <p>{address}</p>
-           <CreateProd senderAddress={address} />
+           <p>{address}</p> */}
+           {/* <CreateProd senderAddress={address} /> */}
+        </div>
         </>
     );
 }

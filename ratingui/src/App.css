@@ -28,6 +28,12 @@
   color: #61dafb;
 }
 
+.container {
+  background: url('./images/img1.jpg');
+  object-fit: cover;
+  background-size: cover;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -135,13 +135,15 @@ const CreateProd = ({senderAddress}) => {
     return(
     <>
     <div className="create">
-     <BodyText className="title">Create Product</BodyText>
+     <div>
+        <BodyText className="title">Create Product</BodyText>
+     </div>
         <div>
             <FormStyle onChange = {(e) => prodName.current = e.target.value} placeholder="Product name" /><br/>
             <FormStyle onChange = {(e) => descrip.current = e.target.value} placeholder="Image" /><br/>
             <FormStyle onChange = {(e) => imag.current = e.target.value} placeholder="Description" /><br/>
             <FormStyle onChange = {(e) => prodPrice.current = e.target.value} placeholder="Price" /><br/>
-            <TransactionButton backgroundColor onClick ={createAsset}>{isLoading ? "loading...": "Create Product"}</TransactionButton>
+            <TransactionButton backgroundColor onClick ={createAsset}>{isLoading ? "loading...": "Create"}</TransactionButton>
             {/* <Button
                     variant="dark"
                     disabled={!isFormFilled()}
