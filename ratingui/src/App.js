@@ -3,7 +3,7 @@ import './App.css';
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import {getProductsAction, createProductAction} from "./utils/contract_functions";
 import AddProduct from "./AddProduct";
-
+import CreateProd from "./CreateProd";
 
 const App = function AppWrapper() {
 
@@ -54,7 +54,7 @@ const App = function AppWrapper() {
     
            )} 
            <p>{address}</p>
-           <AddProduct createProduct={createProduct}/>
+           <CreateProd senderAddress={address} />
         </>
     );
 }

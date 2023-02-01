@@ -67,6 +67,20 @@ class Rating(Application):
 
     #     return can_tip
     
+
+    @opt_in
+    def do_rating(self):
+        """Let txn sender rate to the product by opting into the contract"""
+        return Seq(
+            Assert(
+                Global.group_size() == Int(2),
+                payment.get().receiver() == self.address,
+                payment.get().amount() == self.price,
+            ),
+            self.initialize_account_state(),
+            self.Variables.rating.increment(),
+        )
+
     # @external
     def tip(self, amount: Expr):
         return Seq(
