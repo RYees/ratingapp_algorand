@@ -22,11 +22,11 @@ body.active-modal {
 .container{
     float: left;
 }
-.overlay {
-    background: rgba(49,49,49,0.8);
+/* .overlay {
+    background: rgba(228, 170, 10, 0.8);
     height: 8rem;
     width: 38rem;
-}
+} */
 .modal-content {
     position: absolute;
     z-index: 10;
@@ -35,10 +35,10 @@ body.active-modal {
     right: 0;
     transform: translate(-50%, -50%);
     line-height: 1.4;
-    background: #df1f1f6c;
+    background: rgba(228, 170, 10, 0.8);
     color: white;
     font-size: 1rem;
-    /* padding: 34px 28px; */
+    padding: 0px 28px;
     border-radius: 3px;
     max-width: 50rem;
     min-width: 35rem;
@@ -51,4 +51,9 @@ body.active-modal {
     right: -40px;
     padding: 5px 7px;
     cursor: pointer;
+}
+
+.exit {
+    background-color: black;
+    color: white;
 }

@@ -170,7 +170,7 @@ const CreateProd = ({senderAddress}) => {
                {status}
             </h2>
             <button className="close-modal" onClick={toggleModal}>
-              <AiFillCloseCircle size='28px'className="text-gray-900"/>
+              <AiFillCloseCircle size='28px'className="exit bg-gray-900"/>
             </button>
           </div>
         </div>
